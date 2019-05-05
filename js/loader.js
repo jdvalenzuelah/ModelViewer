@@ -39,7 +39,7 @@ function getLight(scene, camera) {
 function getRenderer() {
     var renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    document.body.querySelector('.canvas-wrapper').appendChild(renderer.domElement);
     return renderer;
 }
 
@@ -49,11 +49,13 @@ Agregan los controles a la camara
 Se define un maximo y minimo de zoom para que el modelo este visible
 */
 function getControls(camera, renderer) {
-    var controls = new THREE.TrackballControls(camera, renderer.domElement);
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableKeys = true;
     controls.zoomSpeed = 0.4;
     controls.panSpeed = 0.4;
     controls.maxDistance = 50;
-    controls.minDistance = -10;
+    controls.minDistance = 10   ;
+    controls.maxPolarAngle = 0.9 * Math.PI / 2;
     return controls;
 }
 
@@ -63,7 +65,7 @@ function loadOBJ() {
     loader.load( 'pisa.obj', function ( object ) {
       object.position.y = -10;
       scene.add( object );
-      document.querySelector('.loading').style.display = 'none';
+      document.querySelector('.loader').style.display = 'none';
     } );
   }
 
