@@ -62,7 +62,7 @@ function getControls(camera, renderer) {
 /* Carga el archivo .obj*/
 function loadOBJ() {
     var loader = new THREE.OBJLoader();
-    loader.load( 'pisa.obj', function ( object ) {
+    loader.load( 'LibertStatue.obj', function ( object ) {
       object.position.y = -10;
       scene.add( object );
       document.querySelector('.loader').style.display = 'none';
